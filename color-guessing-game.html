@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Guessing Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Color Guessing Game</h1>
+    <button type="btn" onclick="runGame()">Start Game</button>
+
+    <script>
+      const COLORS_ARRAY = [
+        "blue",
+        "cyan",
+        "gold",
+        "gray",
+        "green",
+        "magenta",
+        "orange",
+        "red",
+        "white",
+        "yellow",
+      ];
+
+      function runGame() {
+        const targetIndex = Math.floor(Math.random() * 10) + 1;
+        const target = COLORS_ARRAY[targetIndex];
+        let guess = "";
+        let correct = false;
+        let numTries = 0;
+
+        do {
+          guess = prompt(
+            "I am thinking of one of these colors:\n\n" + COLORS_ARRAY +"\n\nWhat color am I thinking of?\n");
+          if (guess === null) {
+            alert("Thanks for playing!");
+            return;
+          }
+          correct === checkGuess(guess, target);
+          numTries =+ 1;
+        } while (!correct);
+
+        alert("Congratulations! You guessed the color!");
+      }
+
+      function checkGuess() {
+        let correct = false;
+        if (COLORS_ARRAY.includes(guess)) {
+          alert("Sorry Try Again");
+        } else if (guess > target) {
+          alert("You guessed to high");
+        } else if (guess < target) {
+          alert("Sorry you guessed to low");
+        } else {
+          alert("Your guess was correct!");
+        }
+        return correct;
+      }
+    </script>
+  </body>
+</html>
